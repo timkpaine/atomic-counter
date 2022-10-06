@@ -1,0 +1,26 @@
+[build-system]
+requires = ["maturin>=0.13,<0.14"]
+build-backend = "maturin"
+
+[project]
+name = "atomic-counter"
+authors = [{name = "Tim Paine"}]
+description="Atomic Counters"
+readme = "README.md"
+version = "0.1.0"
+requires-python = ">=3.7"
+dependencies = []
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.optional-dependencies]
+test = ["pytest < 8.0.0"]
+
+[project.urls]
+repository = "https://github.com/timkpaine/atomic-counter"
