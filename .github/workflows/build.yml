@@ -46,20 +46,6 @@ jobs:
         cache: "pip"
         cache-dependency-path: 'pyproject.toml'
 
-    # - name: Use Node.js ${{ matrix.node-version }}
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: ${{ matrix.node-version }}
-    #     cache: 'yarn'
-    #     cache-dependency-path: js/yarn.lock
-
-    # - name: Install yarn
-    #   run: npm install -g yarn
-
-    # - uses: actions-rs/cargo@v1
-    #   with:
-    #     command: check
-
     - name: Install dependencies
       run: |
         make setup

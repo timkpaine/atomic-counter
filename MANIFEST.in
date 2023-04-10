@@ -1,4 +1,5 @@
 graft atomic_counter
+graft atomic_counter/tests
 graft src
 
 include .bumpversion.cfg
