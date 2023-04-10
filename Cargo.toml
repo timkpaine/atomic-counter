@@ -12,6 +12,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 atomic-counter = "1"
+chrono = "0.4.24"
 pyo3 = { version = "0.16", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
 
 [profile.release]

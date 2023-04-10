@@ -1,0 +1,18 @@
+graft atomic_counter
+graft src
+
+include .bumpversion.cfg
+include Cargo.lock
+include Cargo.toml
+include LICENSE
+include Makefile
+include README.md
+include pyproject.toml
+
+exclude *.xml
+exclude .gitignore
+
+prune .github
+prune .pytest_cache
+prune .ruff_cache
+
