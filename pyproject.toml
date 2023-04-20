@@ -1,5 +1,5 @@
 [build-system]
-requires = ["maturin>=0.13,<0.14"]
+requires = ["maturin"]
 build-backend = "maturin"
 
 [project]
@@ -8,14 +8,20 @@ authors = [{name = "Tim Paine"}]
 description="Atomic Counters"
 readme = "README.md"
 version = "0.1.1"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 dependencies = [
   "python-dateutil",
 ]
 classifiers = [
+    "Development Status :: 3 - Alpha",
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 
 [project.license]
