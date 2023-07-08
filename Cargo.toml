@@ -5,19 +5,14 @@ edition = "2021"
 publish = false
 
 [lib]
-# Name this aat to match the python library
 name = "atomic_counter"
 path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-atomic-counter = "1"
 chrono = "0.4.24"
-pyo3 = { version = "0.16", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+pyo3 = { version = "0.19", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
 
 [profile.release]
 panic = 'abort'
 lto = true
-
-[package.metadata.maturin]
-# python-source = "python" 
