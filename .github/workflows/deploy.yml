@@ -79,7 +79,7 @@ jobs:
         "dir=$(pip cache dir)" >> $env:GITHUB_OUTPUT
     
     - name: Cache python dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ steps.pip-cache.outputs.dir || steps.pip-cache-win.outputs.dir }}
         key: ${{ runner.os }}-pip-${{ matrix.python-version }}
@@ -98,7 +98,7 @@ jobs:
       shell: python
 
     - name: Cache cibuildwheel tools
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ steps.cibuildwheel-cache.outputs.dir }}
         key: ${{ runner.os }}-cibuildwheel-${{ matrix.python-version }}
