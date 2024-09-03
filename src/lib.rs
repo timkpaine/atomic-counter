@@ -5,6 +5,7 @@ use std::sync::Mutex;
 #[pyclass]
 struct Counter {
     value: Mutex<u64>,
+    interval: u64,
 }
 
 // 2010-01-01
@@ -17,7 +18,7 @@ fn dt_to_u64(dt: DateTime<Utc>, base: i64) -> u64 {
 #[pymethods]
 impl Counter {
     #[new]
-    fn new(offset: Option<u64>, base: Option<i64>) -> Self {
+    fn new(offset: Option<u64>, base: Option<i64>, interval: Option<u64>) -> Self {
         // now is the instantiation time of this
         let now = Utc::now();
 
@@ -31,13 +32,21 @@ impl Counter {
 
         Counter {
             value: Mutex::new(dt_to_u64(now, base) - offset),
+            interval: interval.unwrap_or(1),
         }
     }
 
+    fn set(&mut self, val: u64) {
+        *self.value.lock().unwrap() = val;
+    }
+
+    fn current(&self) -> u64 {
+        *self.value.lock().unwrap()
+    }
+
     fn next(&mut self) -> u64 {
-        let ret: u64 = *self.value.lock().unwrap();
-        *self.value.lock().unwrap() += 1;
-        ret
+        *self.value.lock().unwrap() += self.interval;
+        self.current()
     }
 }
 
