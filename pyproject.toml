@@ -31,6 +31,7 @@ file = "LICENSE"
 
 [project.optional-dependencies]
 develop = [
+  "bump-my-version",
   "check-manifest",
   "maturin>=1.1,<2",
   "pytest",
@@ -44,23 +45,48 @@ develop = [
 repository = "https://github.com/timkpaine/atomic-counter"
 homepage = "https://github.com/timkpaine/atomic-counter"
 
-[tool.black]
-color = true
-line-length = 150
-target-version = ['py310']
-skip-string-normalization = true
+[tool.bumpversion]
+current_version = "0.1.2"
+commit = true
+tag = false
+
+[[tool.bumpversion.files]]
+filename = "atomic_counter/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "Cargo.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
 
 [tool.check-manifest]
-ignore = [
-  ".bumpversion.cfg",  # not working
-]
-
-[tool.ruff]
-line-length = 150
-
-[tool.ruff.per-file-ignores]
-"__init__.py" = ["F401", "F403"]
+ignore = []
 
 [tool.pytest.ini_options]
 asyncio_mode = 'strict'
 testpaths = 'atomic_counter/tests'
+
+[tool.ruff]
+line-length = 150
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+default-section = "third-party"
+known-first-party = ["nbprint"]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+

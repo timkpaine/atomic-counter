@@ -32,11 +32,13 @@ dev: build  ## lightweight in-place build
 lint:  ## run linters
 	cargo clippy --all-features
 	cargo fmt --all -- --check
-	python -m ruff atomic_counter
+	python -m ruff check atomic_counter
+	python -m ruff format --check atomic_counter
 
 fix:  ## run autofixers
 	cargo fmt --all
-	python -m ruff atomic_counter --fix
+	python -m ruff format atomic_counter
+	python -m ruff check --fix atomic_counter
 
 format: fix
 

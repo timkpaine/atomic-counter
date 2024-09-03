@@ -14,5 +14,3 @@ class TestOffset:
         # convert to nanos
         nanos_today = seconds_today * 1_000_000_000
         assert 1_000_000_000 < counter.next() < nanos_today
-
-
