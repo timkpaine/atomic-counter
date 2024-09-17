@@ -9,11 +9,9 @@ name = "atomic-counter"
 authors = [{name = "Tim Paine"}]
 description="Atomic Counters"
 readme = "README.md"
-version = "0.1.2"
+version = "0.1.3"
 requires-python = ">=3.8"
-dependencies = [
-  "python-dateutil",
-]
+dependencies = []
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Programming Language :: Rust",
@@ -46,7 +44,7 @@ repository = "https://github.com/timkpaine/atomic-counter"
 homepage = "https://github.com/timkpaine/atomic-counter"
 
 [tool.bumpversion]
-current_version = "0.1.2"
+current_version = "0.1.3"
 commit = true
 tag = false
 

@@ -1,9 +1,6 @@
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 from datetime import datetime
-from functools import lru_cache
-
-from dateutil import tz
 
 from .atomic_counter import Counter
 
@@ -16,7 +13,7 @@ def daily() -> Counter:
     of 1ns"""
 
     nowish = datetime.utcnow()
-    base = datetime(nowish.year, nowish.month, nowish.day, tzinfo=tz.UTC)
+    base = datetime(nowish.year, nowish.month, nowish.day)
 
     return Counter(int(base.timestamp()) * 1_000_000_000)
 
