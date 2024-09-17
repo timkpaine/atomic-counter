@@ -1,10 +1,11 @@
 __version__ = "0.1.2"
 
 from datetime import datetime
+from functools import lru_cache
+
 from dateutil import tz
 
 from .atomic_counter import Counter
-
 
 _BASE = 1577854800000000000
 

@@ -1,5 +1,6 @@
-from atomic_counter import daily
 from datetime import datetime
+
+from atomic_counter import daily
 
 
 class TestOffset:
