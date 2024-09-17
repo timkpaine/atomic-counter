@@ -14,7 +14,7 @@ E.g. if you quit the process and recreate a new counter `>1ns` later, your seque
 ```python
 from atomic_counter import Counter
 
-c = Counter(base_in_nanos, now_in_nanos)
+c = Counter(base_in_nanos)
 
 c.next()  # generate next number in sequence
 ```
