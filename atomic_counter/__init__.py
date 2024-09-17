@@ -1,10 +1,12 @@
 __version__ = "0.1.2"
 
-from functools import lru_cache
 from datetime import datetime
 from dateutil import tz
 
 from .atomic_counter import Counter
+
+
+_BASE = 1577854800000000000
 
 
 def daily() -> Counter:
@@ -15,7 +17,7 @@ def daily() -> Counter:
     nowish = datetime.utcnow()
     base = datetime(nowish.year, nowish.month, nowish.day, tzinfo=tz.UTC)
 
-    return Counter(0, int(base.timestamp()) * 1_000_000_000)
+    return Counter(int(base.timestamp()) * 1_000_000_000)
 
 
 __all__ = [
