@@ -1,5 +1,6 @@
-from atomic_counter import Counter, _BASE
 from datetime import datetime
+
+from atomic_counter import _BASE, Counter
 
 
 class TestOffset:
