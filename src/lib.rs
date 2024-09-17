@@ -1,4 +1,4 @@
-use chrono::{DateTime, Utc};
+use chrono::Utc;
 use pyo3::prelude::*;
 use std::sync::Mutex;
 
@@ -8,30 +8,21 @@ struct Counter {
     interval: u64,
 }
 
-// 2010-01-01
-static _BASE: i64 = 1262322000000000000;
-
-fn dt_to_u64(dt: DateTime<Utc>, base: i64) -> u64 {
-    (dt.timestamp_nanos() - base) as u64
-}
+// 2020-01-01
+static _BASE: u64 = 1577854800000000000;
 
 #[pymethods]
 impl Counter {
     #[new]
-    fn new(offset: Option<u64>, base: Option<i64>, interval: Option<u64>) -> Self {
+    fn new(base: Option<u64>, now: Option<u64>, interval: Option<u64>) -> Self {
         // now is the instantiation time of this
-        let now = Utc::now();
+        let now = now.unwrap_or(Utc::now().timestamp_nanos() as u64);
 
-        // base is either provided, or we use the default of 2010-01-01
+        // base is either provided, or we use the default of 2020-01-01
         let base = base.unwrap_or(_BASE);
 
-        // offset is the difference between `now` and `base` in nanos.
-        // offset is the offset from base to the start,'
-        // e.g. start = base + offset
-        let offset = offset.unwrap_or(dt_to_u64(now, base));
-
         Counter {
-            value: Mutex::new(dt_to_u64(now, base) - offset),
+            value: Mutex::new(now - base),
             interval: interval.unwrap_or(1),
         }
     }
