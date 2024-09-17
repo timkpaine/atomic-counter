@@ -14,16 +14,10 @@ E.g. if you quit the process and recreate a new counter `>1ns` later, your seque
 ```python
 from atomic_counter import Counter
 
-c = Counter(offset_in_nanos, base_in_nanos)
+c = Counter(base_in_nanos, now_in_nanos)
 
 c.next()  # generate next number in sequence
 ```
 
-Here, `base` is the counter's `0` value (e.g. a epoch in nanos to consider the `0` point, to keep numbers as small as possible if you do not need to go back to 1970). `offset` is the number of nanos since `base` at which to start.
-
-If unset, `base` will be `2010-01-01` in nanos, `offset` will be `0`, which means the counter will start at `(now - 2010/01/01) as nanos`.
-
 To create e.g. a daily counter, pass in `base=today in nanos`. As this is a common occurrence for sequences that reset daily, a convenience function `def daily() -> Counter:` is provided.
-
-
 
