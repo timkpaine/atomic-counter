@@ -21,3 +21,17 @@ c.next()  # generate next number in sequence
 
 To create e.g. a daily counter, pass in `base=today in nanos`. As this is a common occurrence for sequences that reset daily, a convenience function `def daily() -> Counter:` is provided.
 
+
+There is also a `TimeCounter` class provided. A 64 bit unsigned integer is created that is monotonically increasing, and allows for converting to microseconds to serve as a timestamp (up to the year 2112). Will break if more than 4096 calls to "next" are called within a single microsecond (which is almost assuredly never going to be physically possible, every call makes a system call to get the current time).
+
+```python
+from atomic_counter import TimeCounter
+from datetime import datetime, timezone
+
+c = TimeCounter()
+
+x = c.next()  # generate id
+x_time = TimeCounter.to_datetime(x)  # generates the datetime where the value was called.
+now = datetime.now(timezone.utc)
+assert x_time <= now
+```

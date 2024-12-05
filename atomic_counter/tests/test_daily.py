@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from atomic_counter import daily
 
@@ -6,7 +6,7 @@ from atomic_counter import daily
 class TestOffset:
     def test_bounds(self):
         counter = daily()
-        nowish = datetime.utcnow()
+        nowish = datetime.now(timezone.utc)
         seconds_today = nowish.second + nowish.minute * 60 + nowish.hour * 3600
 
         # offset for small delay

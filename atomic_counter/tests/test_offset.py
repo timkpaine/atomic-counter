@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from atomic_counter import _BASE, Counter
 
@@ -21,9 +21,11 @@ class TestOffset:
         assert c2.current() == 3
 
     def test_offset(self):
-        nowish = datetime.utcnow()
-        base = datetime(nowish.year, nowish.month, nowish.day, nowish.hour, nowish.minute, nowish.second, nowish.microsecond)
-        nowish2 = datetime(nowish.year, nowish.month, nowish.day, nowish.hour, nowish.minute, nowish.second + 1, nowish.microsecond)
+        nowish = datetime.now(timezone.utc)
+        base = datetime(nowish.year, nowish.month, nowish.day, nowish.hour, nowish.minute, nowish.second, nowish.microsecond, tzinfo=timezone.utc)
+        nowish2 = datetime(
+            nowish.year, nowish.month, nowish.day, nowish.hour, nowish.minute, nowish.second + 1, nowish.microsecond, tzinfo=timezone.utc
+        )
         base = int(base.timestamp()) * 1_000_000_000
         nowish = int(nowish.timestamp()) * 1_000_000_000
         nowish2 = int(nowish2.timestamp()) * 1_000_000_000
