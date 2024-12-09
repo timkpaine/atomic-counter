@@ -1,7 +1,7 @@
 PYTHON=python
 
 .DEFAULT_GOAL := help
-.PHONY: build build-sdist dev setup develop lint fix format tests test coverage checks check clean dist publish help
+.PHONY: build build-sdist dev develop lint fix format tests test coverage checks check clean dist publish help
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
@@ -10,14 +10,11 @@ else
 	_CP_COMMAND := cp target/debug/libatomic_counter.so atomic_counter/atomic_counter.abi3.so
 endif
 
-setup:  ## setup dev dependencies
+develop:  ## build the library for development
 	rustup component add rustfmt
 	rustup component add clippy
-	# cargo install cargo2junit
-	# cargo install grcov
-	python -m pip install maturin
-
-develop:  ## build the library for development
+	cargo install cargo-nextest 
+	cargo install cargo-llvm-cov
 	python -m pip install -e .[develop]
 
 build:  ## build the library
@@ -43,19 +40,12 @@ fix:  ## run autofixers
 format: fix
 
 tests:  ## run tests
-	python -m pytest -v atomic_counter/tests --junitxml=junit.xml
-	# cargo test -- --show-output
+	python -m pytest -v atomic_counter/tests
+
 test: tests
 
-coverage: $(eval SHELL:=/bin/bash)
-	{ \
-		# export CARGO_INCREMENTAL=0;\
-		# export RUSTDOCFLAGS="-Cpanic=abort";\
-		# export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort";\
-		# cargo test -- -Z unstable-options --format json | cargo2junit > junit.xml;\
-		# grcov . --llvm -s . -t lcov --branch --ignore-not-existing -o ./coverage.info;\
-		python -m pytest -v atomic_counter/tests --junitxml=junit.xml --cov=atomic_counter --cov-branch --cov-fail-under=80 --cov-report term-missing --cov-report xml;\
-	}
+coverage:
+	python -m pytest -v atomic_counter/tests --cov=atomic_counter --cov-report term-missing --cov-report xml
 
 checks:  ## run checks
 	cargo check --all-features
@@ -66,11 +56,23 @@ check: checks
 clean:  ## clean the project
 	git clean -fdx
 
-dist: clean build build-sdist  ## create dists
-	python -m twine check target/wheels/*
+.PHONY: dist-py-wheel dist-py-sdist dist-rust dist-check dist publish
 
-publish: dist  ## dist to pypi
-	python -m twine upload target/wheels/* --skip-existing
+dist-py-wheel:  # build python wheel
+	python -m cibuildwheel --output-dir dist
+
+dist-py-sdist:  # build python sdist
+	python -m build --sdist -o dist
+
+dist-rust:  # build rust dists
+	make -C rust dist
+
+dist-check:  ## run python dist checker with twine
+	python -m twine check dist/*
+
+dist: clean build dist-rust dist-py-wheel dist-py-sdist dist-check  ## build all dists
+
+publish: dist  # publish python assets
 
 # Thanks to Francoise at marmelab.com for this
 help:
