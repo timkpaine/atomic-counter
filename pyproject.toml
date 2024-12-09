@@ -66,9 +66,42 @@ replace = 'version = "{new_version}"'
 [tool.check-manifest]
 ignore = []
 
+[tool.cibuildwheel]
+before-build = "rustup show"
+build = "cp39-*"
+skip = "*musllinux*"
+test-command = "pytest -vvv {project}/atomic_counter/tests"
+test-requires = ["pytest", "pytest-cov", "pytest-sugar", "pytest-xdist"]
+
+[tool.cibuildwheel.linux]
+before-build = "curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=stable --profile=minimal -y && rustup show"
+environment = {PATH="$HOME/.cargo/bin:$PATH", CARGO_TERM_COLOR="always"}
+archs = "x86_64"
+
+[tool.cibuildwheel.macos]
+archs = "x86_64 arm64"
+environment = {MACOS_DEPLOYMENT_TARGET=11.0}
+
+[tool.cibuildwheel.windows]
+environment = {PATH="$UserProfile\\.cargo\bin;$PATH"}
+archs = "AMD64 x86"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+exclude_also = [
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "@(abc\\.)?abstractmethod",
+]
+ignore_errors = true
+fail_under = 50
+
 [tool.pytest.ini_options]
-asyncio_mode = 'strict'
-testpaths = 'atomic_counter/tests'
+addopts = ["-vvv", "--junitxml=junit.xml"]
+asyncio_mode = "strict"
+testpaths = "atomic_counter/tests"
 
 [tool.ruff]
 line-length = 150
