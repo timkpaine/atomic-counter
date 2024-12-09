@@ -57,7 +57,6 @@ jobs:
 
       - name: Make dist
         run: |
-          make dist-rust
           make dist-py-sdist
           make dist-py-wheel
           make dist-check

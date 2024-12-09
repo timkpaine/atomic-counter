@@ -56,7 +56,7 @@ check: checks
 clean:  ## clean the project
 	git clean -fdx
 
-.PHONY: dist-py-wheel dist-py-sdist dist-rust dist-check dist publish
+.PHONY: dist-py-wheel dist-py-sdist dist-check dist publish
 
 dist-py-wheel:  # build python wheel
 	python -m cibuildwheel --output-dir dist
@@ -64,13 +64,10 @@ dist-py-wheel:  # build python wheel
 dist-py-sdist:  # build python sdist
 	python -m build --sdist -o dist
 
-dist-rust:  # build rust dists
-	make -C rust dist
-
 dist-check:  ## run python dist checker with twine
 	python -m twine check dist/*
 
-dist: clean build dist-rust dist-py-wheel dist-py-sdist dist-check  ## build all dists
+dist: clean build dist-py-wheel dist-py-sdist dist-check  ## build all dists
 
 publish: dist  # publish python assets
 
