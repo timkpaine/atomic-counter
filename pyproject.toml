@@ -31,6 +31,7 @@ file = "LICENSE"
 develop = [
   "bump-my-version",
   "check-manifest",
+  "cibuildwheel",
   "maturin>=1.1,<2",
   "pytest",
   "pytest-cov",
