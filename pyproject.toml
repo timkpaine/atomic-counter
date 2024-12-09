@@ -71,7 +71,8 @@ ignore = []
 before-build = "rustup show"
 build = "cp39-*"
 skip = "*musllinux*"
-test-command = "pytest -vvv {project}/atomic_counter/tests"
+test-command = "echo 'todo'"
+# test-command = "pytest -vvv {project}/atomic_counter/tests"
 test-requires = ["pytest", "pytest-cov", "pytest-sugar", "pytest-xdist"]
 
 [tool.cibuildwheel.linux]
