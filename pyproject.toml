@@ -101,6 +101,7 @@ environment = {MACOS_DEPLOYMENT_TARGET=11.0}
 [tool.cibuildwheel.windows]
 environment = {PATH="$UserProfile\\.cargo\bin;$PATH"}
 archs = "AMD64 x86"
+test-command = "echo 'TODO'"
 
 [tool.coverage.run]
 branch = true

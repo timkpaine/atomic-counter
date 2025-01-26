@@ -13,6 +13,7 @@ struct TimeCounter(RustTimeCounter);
 #[pymethods]
 impl Counter {
     #[new]
+    #[pyo3(signature = (base=None, now=None, interval=None))]
     fn new(base: Option<u64>, now: Option<u64>, interval: Option<u64>) -> Self {
         Counter(RustCounter::new(base, now, interval))
     }
