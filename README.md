@@ -1,5 +1,8 @@
-# Atomic Counter
+# atomic counter
 
+Atomic Counters
+
+[![Build Status](https://github.com/timkpaine/atomic-counter/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/timkpaine/atomic-counter/actions/workflows/build.yml)
 [![Build Status](https://github.com/timkpaine/atomic-counter/workflows/Build%20Status/badge.svg?branch=main)](https://github.com/timkpaine/atomic-counter/actions?query=workflow%3A%22Build+Status%22)
 [![Coverage](https://codecov.io/gh/timkpaine/atomic-counter/branch/main/graph/badge.svg)](https://codecov.io/gh/timkpaine/atomic-counter)
 [![License](https://img.shields.io/github/license/timkpaine/atomic-counter.svg)](https://pypi.python.org/pypi/atomic-counter)
@@ -35,3 +38,6 @@ x_time = TimeCounter.to_datetime(x)  # generates the datetime where the value wa
 now = datetime.now(timezone.utc)
 assert x_time <= now
 ```
+
+> [!NOTE]
+> This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).

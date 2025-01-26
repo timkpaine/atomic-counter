@@ -1,53 +1,56 @@
 [build-system]
-requires = [
-  "maturin>=1.1,<2"
-]
+requires = ["maturin>=1,<2"]
 build-backend = "maturin"
 
 [project]
 name = "atomic-counter"
-authors = [{name = "Tim Paine"}]
-description="Atomic Counters"
+authors = [{name = "the atomic-counter authors", email = "t.paine154@gmail.com"}]
+description = "Atomic Counters"
 readme = "README.md"
+license = { text = "Apache-2.0" }
 version = "0.1.4"
-requires-python = ">=3.8"
-dependencies = []
+requires-python = ">=3.9"
+keywords = []
+
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Programming Language :: Rust",
+    "Programming Language :: Python",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 
-[project.license]
-file = "LICENSE"
+dependencies = []
 
 [project.optional-dependencies]
 develop = [
-  "bump-my-version",
-  "check-manifest",
-  "cibuildwheel",
-  "maturin>=1.1,<2",
-  "pytest",
-  "pytest-cov",
-  "ruff",
-  "twine",
-  "wheel",
+    "build",
+    "bump-my-version",
+    "check-manifest",
+    "cibuildwheel",
+    "maturin>=1,<2",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "twine",
+    "wheel",
 ]
 
+[project.scripts]
+
 [project.urls]
-repository = "https://github.com/timkpaine/atomic-counter"
-homepage = "https://github.com/timkpaine/atomic-counter"
+Repository = "https://github.com/timkpaine/atomic-counter"
+Homepage = "https://github.com/timkpaine/atomic-counter"
 
 [tool.bumpversion]
 current_version = "0.1.4"
 commit = true
-tag = false
+tag = true
 
 [[tool.bumpversion.files]]
 filename = "atomic_counter/__init__.py"
@@ -55,24 +58,35 @@ search = '__version__ = "{current_version}"'
 replace = '__version__ = "{new_version}"'
 
 [[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
 filename = "Cargo.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
-filename = "pyproject.toml"
+filename = "rust/Cargo.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [tool.check-manifest]
-ignore = []
+ignore = [
+    ".copier-answers.yml",
+    "Makefile",
+    "docs/**/*",
+    "rust/.config/*",
+    "rust/Cargo.lock",
+    "rust/README.md",
+]
 
 [tool.cibuildwheel]
 before-build = "rustup show"
 build = "cp39-*"
 skip = "*musllinux*"
-test-command = "echo 'todo'"
-# test-command = "pytest -vvv {project}/atomic_counter/tests"
+test-command = "pytest -vvv {project}/atomic_counter/tests"
 test-requires = ["pytest", "pytest-cov", "pytest-sugar", "pytest-xdist"]
 
 [tool.cibuildwheel.linux]
@@ -87,10 +101,13 @@ environment = {MACOS_DEPLOYMENT_TARGET=11.0}
 [tool.cibuildwheel.windows]
 environment = {PATH="$UserProfile\\.cargo\bin;$PATH"}
 archs = "AMD64 x86"
+test-command = "echo 'TODO'"
 
 [tool.coverage.run]
 branch = true
-
+omit = [
+    "atomic_counter/tests/integration/",
+]
 [tool.coverage.report]
 exclude_also = [
     "raise NotImplementedError",
@@ -118,4 +135,4 @@ known-first-party = ["atomic_counter"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401", "F403"]
+"__init__.py" = ["F401"]
