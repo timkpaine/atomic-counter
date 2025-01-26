@@ -1,0 +1,21 @@
+[package]
+name = "atomic_counter"
+version = "0.1.4"
+authors = ["the atomic-counter authors <t.paine154@gmail.com>"]
+edition = "2021"
+license = "Apache-2.0"
+readme = "../README.md"
+repository = "https://github.com/timkpaine/atomic counter"
+description = ""
+
+[lib]
+name = "atomic_counter"
+path = "src/lib.rs"
+crate-type = ["rlib"]
+
+[dependencies]
+chrono = "0.4.24"
+
+[profile.test.junit]
+path = "junit.xml"
+

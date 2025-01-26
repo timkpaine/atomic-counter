@@ -1,5 +1,5 @@
 [package]
-name = "atomic-counter-py"
+name = "atomic_counter_py"
 version = "0.1.4"
 edition = "2021"
 publish = false
@@ -10,8 +10,9 @@ path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-chrono = "0.4.24"
-pyo3 = { version = "0.19", features = ["abi3-py37", "extension-module", "multiple-pymethods"] }
+atomic_counter = { path = "./rust", version = "*" }
+pyo3 = { version = "0.22", features = ["abi3-py39", "extension-module", "multiple-pymethods"] }
+strum = "0.24.1"
 
 [profile.release]
 panic = 'abort'
