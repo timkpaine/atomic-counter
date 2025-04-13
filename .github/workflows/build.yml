@@ -39,6 +39,7 @@ jobs:
       with:
         version: ${{ matrix.python-version }}
 
+<<<<<<< before updating
     - name: Set up Rust
       uses: dtolnay/rust-toolchain@stable
       with:
@@ -64,6 +65,9 @@ jobs:
         rustup toolchain install stable-i686-pc-windows-msvc
         rustup target add i686-pc-windows-msvc
       if: matrix.os == 'windows-latest'
+=======
+    - uses: actions-ext/rust/setup@main
+>>>>>>> after updating
 
     - name: Install dependencies
       run: make develop
