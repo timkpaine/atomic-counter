@@ -111,11 +111,6 @@ environment = {PATH="$HOME/.cargo/bin:$PATH", CARGO_TERM_COLOR="always", MACOS_D
 archs = "x86_64 arm64"
 
 [tool.cibuildwheel.windows]
-<<<<<<< before updating
-environment = {PATH="$UserProfile\\.cargo\bin;$PATH"}
-archs = "AMD64 x86"
-test-command = "echo 'TODO'"
-=======
 before-build = """
 curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=stable --profile=minimal -y
 rustup target add x86_64-pc-windows-msvc
@@ -124,7 +119,6 @@ rustup show
 """
 environment = {PATH="$UserProfile\\.cargo\bin;$PATH", CARGO_TERM_COLOR="always"}
 archs = "AMD64 ARM64"
->>>>>>> after updating
 
 [tool.coverage.run]
 branch = true
