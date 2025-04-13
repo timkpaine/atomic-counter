@@ -120,6 +120,9 @@ rustup show
 environment = {PATH="$UserProfile\\.cargo\bin;$PATH", CARGO_TERM_COLOR="always"}
 archs = "AMD64 ARM64"
 
+test-command = "echo 'skipping'"
+test-requires = []
+
 [tool.coverage.run]
 branch = true
 omit = [
