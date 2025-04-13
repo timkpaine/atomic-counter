@@ -52,10 +52,9 @@ jobs:
       uses: Swatinem/rust-cache@v2
       with:
         key: ${{ matrix.os }}
-  
+
     - name: Setup rust targets (MacOS)
       run: |
-        rustup toolchain install stable-x86_64-apple-darwin
         rustup target add x86_64-apple-darwin
         rustup toolchain install stable-aarch64-apple-darwin
         rustup target add aarch64-apple-darwin
