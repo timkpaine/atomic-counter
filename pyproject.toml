@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "atomic-counter"
-authors = [{name = "the atomic-counter authors", email = "t.paine154@gmail.com"}]
+authors = [{name = "the atomic-counter authors", email = "dev@1kbgz.com"}]
 description = "Atomic Counters"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -45,8 +45,8 @@ develop = [
 [project.scripts]
 
 [project.urls]
-Repository = "https://github.com/timkpaine/atomic-counter"
-Homepage = "https://github.com/timkpaine/atomic-counter"
+Repository = "https://github.com/1kbgz/atomic-counter"
+Homepage = "https://github.com/1kbgz/atomic-counter"
 
 [tool.bumpversion]
 current_version = "0.1.4"
