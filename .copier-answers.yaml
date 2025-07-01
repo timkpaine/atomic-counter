@@ -2,8 +2,8 @@
 _commit: 42057e0
 _src_path: https://github.com/python-project-templates/base.git
 add_extension: rust
-email: t.paine154@gmail.com
-github: timkpaine
+email: dev@1kbgz.com
+github: 1kbgz
 project_description: Atomic Counters
 project_name: atomic counter
 python_version_primary: '3.11'

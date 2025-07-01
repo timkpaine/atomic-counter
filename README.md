@@ -2,9 +2,9 @@
 
 Atomic Counters
 
-[![Build Status](https://github.com/timkpaine/atomic-counter/actions/workflows/build.yaml/badge.svg?branch=main&event=push)](https://github.com/timkpaine/atomic-counter/actions/workflows/build.yaml)
-[![codecov](https://codecov.io/gh/timkpaine/atomic-counter/branch/main/graph/badge.svg)](https://codecov.io/gh/timkpaine/atomic-counter)
-[![License](https://img.shields.io/github/license/timkpaine/atomic-counter)](https://github.com/timkpaine/atomic-counter)
+[![Build Status](https://github.com/1kbgz/atomic-counter/actions/workflows/build.yaml/badge.svg?branch=main&event=push)](https://github.com/1kbgz/atomic-counter/actions/workflows/build.yaml)
+[![codecov](https://codecov.io/gh/1kbgz/atomic-counter/branch/main/graph/badge.svg)](https://codecov.io/gh/1kbgz/atomic-counter)
+[![License](https://img.shields.io/github/license/1kbgz/atomic-counter)](https://github.com/1kbgz/atomic-counter)
 [![PyPI](https://img.shields.io/pypi/v/atomic-counter.svg)](https://pypi.python.org/pypi/atomic-counter)
 
 ## Overview
